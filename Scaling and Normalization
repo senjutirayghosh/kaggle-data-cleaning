@@ -89,5 +89,3 @@ print('_'*30)
 print('\nNormalized data\nPreview:\n', normalized_pledges.head())
 print('Minimum value:', float(normalized_pledges.min()),
       '\nMaximum value:', float(normalized_pledges.max()))
-      
-      #
