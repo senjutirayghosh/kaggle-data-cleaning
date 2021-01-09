@@ -1,0 +1,37 @@
+# Get our environment set up
+# modules we'll use
+import pandas as pd
+import numpy as np
+
+# helpful character encoding module
+import chardet
+
+# set seed for reproducibility
+np.random.seed(0)
+
+
+# 1) What are encodings?
+
+sample_entry = b'\xa7A\xa6n'
+print(sample_entry)
+print('data type:', type(sample_entry))
+
+# Use the next code cell to create a variable new_entry that changes the encoding from "big5-tw" to "utf-8". new_entry should have the bytes datatype.
+# TODO: Your code here!
+before = sample_entry.decode("big5-tw")
+new_entry = before.encode()
+
+
+# 2) Reading in files with encoding problems
+# TODO: Load in the DataFrame correctly.
+with open("../input/fatal-police-shootings-in-the-us/PoliceKillingsUS.csv", 'rb') as rawdata:
+    result = chardet.detect(rawdata.read(100000))
+print(result)
+
+police_killings = pd.read_csv("../input/fatal-police-shootings-in-the-us/PoliceKillingsUS.csv", encoding = 'Windows-1252')
+
+# 3) Saving your files with UTF-8 encoding
+# Save a version of the police killings dataset to CSV with UTF-8 encoding. Your answer will be marked correct after saving this file. Note: When using the to_csv() method, supply only the name of the file (e.g., "my_file.csv"). This saves the file at the filepath "/kaggle/working/my_file.csv".
+# TODO: Save the police killings dataset to CSV
+police_killings.to_csv("my_file.csv")
+
